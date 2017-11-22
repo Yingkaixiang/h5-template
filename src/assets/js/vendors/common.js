@@ -1,3 +1,3 @@
-import '../../sass/reset.scss'
+import '../../sass/reset.scss';
 
 alert('common.js')
