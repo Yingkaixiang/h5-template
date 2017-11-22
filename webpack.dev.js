@@ -10,5 +10,6 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.resolve(__dirname, './src'),
     inline: true,
+    quiet: true,
   },
 });

@@ -1,22 +1,36 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const glob = require('glob');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+/**
+ * 获取各个页面下的入口文件
+ */ 
+const getEntry = () => {
+  const jsPath = path.resolve(__dirname, './src/pages/');
+  const dirs = fs.readdirSync(jsPath);
+  const entry = {};
+  dirs.forEach((item) => {
+    const files = glob.sync(`./src/pages/${item}/**/*.js`);
+    if (files.length > 0) {
+      entry[item] = files;
+    }
+  });
+  return entry;
+};
+
+const entry = Object.assign(getEntry(), {
+  flexible: ['./src/assets/js/flexible.js'],
+  vendors: [
+    './src/assets/js/common.js',
+    './src/assets/js/rela.js'
+  ]
+});
+
 module.exports = {
-  entry: {
-    simple: './src/pages/simple/index.js',
-    demo: [
-      './src/pages/demo/js/page1.js',
-      './src/pages/demo/js/page2.js',
-    ],
-    flexible: [
-      './src/assets/js/flexible.js'
-    ],
-    common: [
-      './src/assets/js/common.js'
-    ]
-  },
+  entry: entry,
   output: {
     filename: '[name].js',
   },
