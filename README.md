@@ -17,7 +17,7 @@ webpack v3.7.1
 
 ~~~
 ├── dist（打包后目录）
-├── config（源码目录）
+├── src（源码目录）
 │   ├── assets（公共js、css、图片等资源）
 │   ├── pages（活动页面，每个单独活动为一个文件夹）
 ~~~
@@ -26,41 +26,21 @@ webpack v3.7.1
 
 * html修改自动刷新
 * 修改 ```webpack``` 配置文件自动重启服务
+* 图片不上传至代码库而是在本地调试时上传至图片cdn，图片工作流
 
 ## 如何使用
 
-### 创建一个页面
+### 创建活动
 
 1. 在 ```pages``` 文件夹下创建一个以活动名称为名的文件夹，比如 ```/pages/test```
 
-2. 在 ```test``` 文件夹下创建三个文件 ```index.html``` ```index.js``` ```index.scss```，实际项目中目录结构可以随意创建。
+2. 在 ```test``` 文件夹下创建活动相关的活动代码和素材
 
-```html
-<!-- index.html -->
-<h1>Hello World！</h1>
-```
+3. 启动本地开发环境
 
 ```js
-// js.html
-alert('index.js')
+npm run dev
 ```
 
-```scss
-/* index.scss */
-h1{
-  color: red;
-}
-```
-
-3. 在 ```webpack.common.js``` 中添加页面打包的入口
-
-```js
-module.exports = {
-  entry: {
-    test: './src/pages/test/index.js',
-  }
-}
-```
-
-4. 在 ```html``` 中引入打包后的文件
+4. 在 ```html``` 中引入打包后的 ```js``` 和 ```css``` 文件
 

@@ -8,12 +8,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 /**
  * 获取各个页面下的入口文件
  */ 
-const getEntry = () => {
-  const jsPath = path.resolve(__dirname, './src/pages/');
-  const dirs = fs.readdirSync(jsPath);
+const getEntry = (src) => {
+  const pagePath = path.resolve(__dirname, src);
+  const dirs = fs.readdirSync(pagePath);
   const entry = {};
   dirs.forEach((item) => {
-    const files = glob.sync(`./src/pages/${item}/**/*.js`);
+    const files = glob.sync(`${src}${item}/**/*.js`);
     if (files.length > 0) {
       entry[item] = files;
     }
@@ -21,16 +21,12 @@ const getEntry = () => {
   return entry;
 };
 
-const entry = Object.assign(getEntry(), {
-  flexible: ['./src/assets/js/flexible.js'],
-  vendors: [
-    './src/assets/js/common.js',
-    './src/assets/js/rela.js'
-  ]
-});
 
 module.exports = {
-  entry: entry,
+  entry: Object.assign(
+    getEntry('./src/pages/'),
+    getEntry('./src/assets/js/'),
+  ),
   output: {
     filename: '[name].js',
   },

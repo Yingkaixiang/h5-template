@@ -1,1 +1,1 @@
-alert('index.js')
+alert('a.js')
