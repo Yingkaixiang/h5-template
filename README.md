@@ -17,11 +17,12 @@ webpack v3.7.1
 ├── dist（打包后目录）
 ├── src（源码目录）
 │   ├── common（公共js、组件、css、图片等资源）
-│   │   ├── components（公共组件）
 │   │   ├── head（插入至<head></head>标签中的js）
 │   │   ├── vendors（公共js）
 │   │   │   ├── common.js（工具方法）
+│   │   │   ├── comment.js（评论组件）
 │   │   │   ├── jsbridge.js（webview与native通信工具）
+│   ├── config（配置文件）
 │   ├── pages（活动页面，每个单独活动为一个文件夹）
 ├── .csscomb.json 样式格式化配置文件
 ├── .eslint.js js格式化配置文件
