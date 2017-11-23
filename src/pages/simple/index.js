@@ -1,14 +1,14 @@
-import './index.scss'
+import './index.scss';
 
 const a = '123sssssss';
 
-$('#bg').click(function(){
-  alert(5555)
-})
+$('#bg').click(() => {
+  console.log(123);
+});
 
 const b = new Hammer($('#img')[0]);
-b.on('tap', function () {
+b.on('tap', () => {
   alert(92929292)
 });
 
-alert(a)
+alert(a);
