@@ -6,5 +6,10 @@ module.exports = {
     "globals": {
         $: true,
         Hammer: true,
+        document: true,
+        window: true,
+        navigator: true,
+        Common: true,
+        JSBridge: true,
     }
 };
