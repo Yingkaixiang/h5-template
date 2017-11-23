@@ -2,12 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const glob = require('glob');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
  * 获取各个页面下的入口文件
- */ 
+ */
 const getEntry = (src) => {
   const pagePath = path.resolve(__dirname, src);
   const dirs = fs.readdirSync(pagePath);
@@ -25,7 +24,7 @@ const getEntry = (src) => {
 module.exports = {
   entry: Object.assign(
     getEntry('./src/pages/'),
-    getEntry('./src/assets/js/'),
+    getEntry('./src/common/js/'),
   ),
   output: {
     filename: '[name].js',
@@ -60,13 +59,13 @@ module.exports = {
           },
         ],
       },
-    ]
+    ],
   },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
-      Hammer: 'hammerjs'
+      Hammer: 'hammerjs',
     }),
     new ExtractTextPlugin('[name].css'),
   ],
-}
+};
