@@ -1,1 +1,1 @@
-alert('rela.js');
+console.log('rela.js');

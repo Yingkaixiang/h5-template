@@ -2,5 +2,7 @@
 
 .DS_Store
 
+/dist
+
 # 代码库中不包含多媒体文件
 **/assets

@@ -36,7 +36,8 @@
     "glob": "^7.1.2",
     "hammerjs": "^2.0.8",
     "jquery": "^3.2.1",
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "uglifyjs-webpack-plugin": "^1.1.0"
   },
   "config": {
     "commitizen": {
