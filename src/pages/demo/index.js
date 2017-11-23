@@ -1,6 +1,8 @@
 import moment from 'moment';
 import qs from 'querystring';
-import Comment from '../../common/js/components/comment';
+import Common from '../../common/js/vendors/common';
+import JSBridge from '../../common/js/vendors/jsbridge';
+import Comment from '../../common/js/vendors/comment';
 
 // 引入活动相关css
 import './index.scss';
