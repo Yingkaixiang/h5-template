@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackRequireHttp = require('webpack-require-http');
 
 /**
  * 获取各个页面下的入口文件
@@ -29,6 +30,9 @@ module.exports = {
   output: {
     filename: '[name].js',
   },
+  externals: [
+    WebpackRequireHttp,
+  ],
   module: {
     rules: [
       {

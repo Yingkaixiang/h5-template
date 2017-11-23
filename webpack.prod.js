@@ -1,5 +1,6 @@
 const path = require('path');
 const glob = require('glob');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -37,6 +38,11 @@ module.exports = merge(common, {
     publicPath: '../../publics',
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+      },
+    }),
     new CleanWebpackPlugin(['dist']),
     new UglifyjsWebpackPlugin(),
   ].concat(getPages()),

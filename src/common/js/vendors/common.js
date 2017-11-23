@@ -1,3 +1,4 @@
+import config from '../../../config/';
 import '../../sass/reset.scss';
 
 class Common {
@@ -11,6 +12,21 @@ class Common {
   static isRelaApp() {
     const reg = /theL\s?\//i;
     return reg.test(navigator.userAgent);
+  }
+
+  /**
+   * 分享参数
+   *
+   * @static
+   * @param {any} data
+   * @memberof Common
+   */
+  static shareToWX(data) {
+    $.ajax({
+      url: `${config.host}/weixin/signature`,
+      method: 'GET',
+      data,
+    });
   }
 }
 

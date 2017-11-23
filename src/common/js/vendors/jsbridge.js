@@ -7,8 +7,14 @@ class JSBridge {
     this.protocal = (() => (Common.isRelaApp() ? 'thel://' : 'thelweb://'))();
   }
 
-  init() {
-    return this.protocal;
+  /**
+   * 跳转至用户个人主页
+   *
+   * @param {any} userId
+   * @memberof JSBridge
+   */
+  toUser(userId) {
+    window.location.href = `${this.protocal}com.user/path?userId=${userId}`;
   }
 }
 

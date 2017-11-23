@@ -7,6 +7,9 @@ import Comment from '../../common/js/vendors/comment';
 // 引入活动相关css
 import './index.scss';
 
+// 引入外部的http请求
+require('http://res.wx.qq.com/open/js/jweixin-1.2.0.js');
+
 const btn = new Hammer($('#btn')[0]);
 btn.on('tap', () => {
   // 使用第三方npm包
@@ -19,7 +22,7 @@ btn.on('tap', () => {
   // 使用公共方法
   console.log(Common.isRelaApp());
   const jsBridge = new JSBridge();
-  console.log(jsBridge.init());
+  jsBridge.toUser(100403874);
 });
 
 console.log('demo.js');
