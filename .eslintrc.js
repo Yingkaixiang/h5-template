@@ -11,5 +11,6 @@ module.exports = {
         navigator: true,
         Common: true,
         JSBridge: true,
+        wx: true,
     }
 };

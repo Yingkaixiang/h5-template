@@ -15,17 +15,39 @@ class Common {
   }
 
   /**
-   * 分享参数
+   * 微信分享
    *
    * @static
-   * @param {any} data
+   * @param {string} url 需要被分享的url
    * @memberof Common
    */
   static shareToWX(data) {
     $.ajax({
-      url: `${config.host}/weixin/signature`,
+      url: `//${config.host}/weixin/signature`,
       method: 'GET',
-      data,
+      data: { url: data.url },
+      success: (res) => {
+        const { timestamp, noncestr, signature } = res;
+        wx.config({
+          debug: process.env.NODE_ENV !== 'production',
+          appId: config.appId,
+          timestamp,
+          noncestr,
+          signature,
+          jsApiList: [
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+          ],
+        });
+        wx.ready(() => {
+          wx.onMenuShareTimeline(data);
+          wx.onMenuShareAppMessage(data);
+          wx.onMenuShareQQ(data);
+          wx.onMenuShareWeibo(data);
+        });
+      },
     });
   }
 }
