@@ -1,0 +1,21 @@
+@function px2rem($px){
+  $rem: 75px;
+  @return ($px / $rem) + rem;
+}
+
+.btn{
+  position: relative;
+  display: block;
+  margin: px2rem(10px);
+  padding: px2rem(10px) px2rem(15px);
+  border: 1px solid transparent;
+  border-color: #108EE9;
+  border-radius: px2rem(4px);
+  background-color: #108EE9;
+  color: #FFFFFF;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: px2rem(20px);
+  line-height: 1.5;
+  cursor: pointer;
+}
