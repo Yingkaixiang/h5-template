@@ -3,6 +3,11 @@
   @return ($px / $rem) + rem;
 }
 
+h4{
+  margin: px2rem(10px);
+  font-size: px2rem(20px);
+}
+
 .btn{
   position: relative;
   display: block;

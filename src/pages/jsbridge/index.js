@@ -3,7 +3,9 @@ import './index.scss';
 // 测试数据
 const env = process.env.NODE_ENV;
 const envStr = env === 'development' ? 'test' : process.env.NODE_ENV;
-console.log(envStr);
+
+$('#env').html(envStr);
+
 const data = {
   test: {
     userId: '100403874',
@@ -16,9 +18,6 @@ const data = {
 
 const jsbridge = new JSBridge({
   debug: true,
-  callback: () => {
-    alert('请更换浏览器');
-  },
 });
 
 const toUser = new Hammer($('#toUser')[0]);

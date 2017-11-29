@@ -31,7 +31,7 @@ class JSBridge {
       if (this.callback && typeof this.callback === 'function') {
         this.callback();
       } else {
-        alert('当前浏览器不支持跳转');
+        window.open('https://www.rela.me/download/');
       }
       clearTimeout(timer);
     }, 1000);
@@ -57,6 +57,36 @@ class JSBridge {
   toMoment(momentId) {
     const url = `${this.protocal}com.moment/path?momentId=${momentId}`;
     this.redirect(url);
+  }
+
+  /**
+   * 关注某个用户
+   *
+   * @param {string} userId 用户id
+   * @param {string} nickName 用户昵称
+   * @param {string} avatar 用户头像
+   * @param {string} callback 关注成功回调函数，传入方法名即可
+   * @memberof JSBridge
+   */
+  followUser(userId, nickName, avatar, callback) {
+    const url = `${this.protocal}com.user/follow?userId=${userId}&nickName=${nickName}&avatar=${avatar}&callback=${callback}`;
+    this.redirect(url);
+  }
+
+  /**
+   * 播放视频
+   * 解决 android webview 无法使用video控件播放视频的bug
+   *
+   * @param {string} videoUrl 视频地址
+   * @memberof JSBridge
+   */
+  playVideo(videoUrl) {
+    if (Common.isRelaApp()) {
+      const url = `${this.protocal}com.video/path?url=${videoUrl}`;
+      this.redirect(url);
+    } else {
+      alert('请在 Rela App 中播放');
+    }
   }
 }
 
