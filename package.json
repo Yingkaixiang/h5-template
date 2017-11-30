@@ -39,6 +39,7 @@
     "moment": "^2.19.2",
     "normalize.css": "^7.0.0",
     "uglifyjs-webpack-plugin": "^1.1.0",
+    "vanilla-lazyload": "^8.5.2",
     "webpack-require-http": "^0.4.3"
   },
   "config": {

@@ -47,9 +47,9 @@ manager.add([doubletap, singletap]);
 // 触发双击事件后不会触发单击事件
 manager.get('doubletap').requireFailure('singletap');
 manager.on('singletap', () => {
-  console.log('1');
+  alert('1');
 });
 manager.on('doubletap', () => {
-  console.log('2');
+  alert('2');
 });
 

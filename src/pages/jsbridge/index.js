@@ -1,3 +1,4 @@
+import '../../common/sass/reset.scss';
 import './index.scss';
 
 // 测试数据
