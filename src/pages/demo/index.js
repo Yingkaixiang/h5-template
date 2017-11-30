@@ -9,6 +9,9 @@ import Common from '../../common/js/lib/common';
 import '../../common/sass/reset.scss';
 import './index.scss';
 
+// 引入外部的http请求
+require('http://res.wx.qq.com/open/js/jweixin-1.2.0.js');
+
 // 懒加载，如何使用请查看官方文档
 const lazyload = new Lazyload({
   container: $('.lazyload-container')[0],
