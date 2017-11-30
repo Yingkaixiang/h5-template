@@ -51,6 +51,4 @@ class Common {
   }
 }
 
-window.Common = Common;
-
 export default Common;

@@ -90,6 +90,4 @@ class JSBridge {
   }
 }
 
-window.JSBridge = JSBridge;
-
 export default JSBridge;
