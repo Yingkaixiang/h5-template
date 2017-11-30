@@ -16,16 +16,26 @@ const data = {
   },
 };
 
+console.dir(document.getElementsByClassName('btn'));
+console.dir(document.querySelector('.btn'));
+console.dir($('.btn'));
+console.dir($('#toUser'));
+
 const jsbridge = new JSBridge({
   debug: true,
 });
 
-const toUser = new Hammer($('#toUser')[0]);
-toUser.on('tap', () => {
-  jsbridge.toUser(data[envStr].userId);
+const btn = new Hammer(document.querySelector('.btn'));
+btn.on('tap', () => {
+  alert('class');
 });
 
-const toMoment = new Hammer($('#toMoment')[0]);
-toMoment.on('tap', () => {
-  jsbridge.toMoment(data[envStr].momentId);
-});
+// const toUser = new Hammer($('#toUser')[0]);
+// toUser.on('tap', () => {
+//   jsbridge.toUser(data[envStr].userId);
+// });
+
+// const toMoment = new Hammer($('#toMoment')[0]);
+// toMoment.on('tap', () => {
+//   jsbridge.toMoment(data[envStr].momentId);
+// });
