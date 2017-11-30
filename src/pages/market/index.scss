@@ -1,0 +1,74 @@
+@function half($n){
+  @return $n / 2;
+}
+$bgHeight: (1:1376px,2:2593px,3:2650px);
+
+.main{
+  position: relative;
+  margin: 0 auto;
+  width: 375px;
+  background: #EAEAEA;
+  @for $i from 1 through 3{
+    .bg-#{$i}{
+      margin-top: -3.5px;
+      width: half(750px);
+      background-image: url(//qncdn.rela.me/act/h5/img/market08/bg-#{$i}.jpg);
+      background-size: half(750px);
+      background-repeat: no-repeat;
+    }
+  }
+  @each $i,$h in $bgHeight{
+    .bg-#{$i}{
+      height: half($h);
+    }
+  }
+  .bg-2{
+    position: relative;
+    .playcontrol{
+      position: absolute;
+      top: 801px;
+      left: 173px;
+    }
+    .play{
+      width: 22px;
+      height: 22px;
+      background-image: url(//qncdn.rela.me/act/h5/img/market08/play.png);
+      background-size: 22px;
+    }
+    .pause{
+      display: none;
+      width: 22px;
+      height: 22px;
+      background-image: url(//qncdn.rela.me/act/h5/img/market08/pause.png);
+      background-size: 22px;
+    }
+  }
+  .mk-list{
+    position: relative;
+    top: 1080px;
+    .btn{
+      margin: 0 auto;
+      width: 75px;
+      height: 30px;
+      border-radius: 5px;
+      background-color: #314069;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 12px;
+      line-height: 2.4;
+    }
+  }
+
+
+
+  .bg-3{
+    position: relative;
+    .btn-user{
+      position: absolute;
+      bottom: 304px;
+      left: 125px;
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
