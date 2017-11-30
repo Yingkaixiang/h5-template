@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import Hammer from 'hammerjs';
+import JSBridge from '../../common/js/lib/jsbridge';
 import './index.scss';
 
 // 测试数据
@@ -16,11 +19,6 @@ const data = {
   },
 };
 
-console.dir(document.getElementsByClassName('btn'));
-console.dir(document.querySelector('.btn'));
-console.dir($('.btn'));
-console.dir($('#toUser'));
-
 const jsbridge = new JSBridge({
   debug: true,
 });
@@ -30,12 +28,12 @@ btn.on('tap', () => {
   alert('class');
 });
 
-// const toUser = new Hammer($('#toUser')[0]);
-// toUser.on('tap', () => {
-//   jsbridge.toUser(data[envStr].userId);
-// });
+const toUser = new Hammer($('#toUser')[0]);
+toUser.on('tap', () => {
+  jsbridge.toUser(data[envStr].userId);
+});
 
-// const toMoment = new Hammer($('#toMoment')[0]);
-// toMoment.on('tap', () => {
-//   jsbridge.toMoment(data[envStr].momentId);
-// });
+const toMoment = new Hammer($('#toMoment')[0]);
+toMoment.on('tap', () => {
+  jsbridge.toMoment(data[envStr].momentId);
+});

@@ -6,6 +6,8 @@
  * @param {function} callback 当前浏览器不支持跳转，则执行回调函数内容
  */
 
+import Common from './common';
+
 class JSBridge {
   constructor({
     debug,

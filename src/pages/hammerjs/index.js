@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import Hammer from 'hammerjs';
 import './index.scss';
 
 // 绑定一个元素
