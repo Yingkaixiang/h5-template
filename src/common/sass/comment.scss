@@ -1,0 +1,14 @@
+@function px2rem($px){
+  $rem: 75px;
+  @return ($px / $rem) + rem;
+}
+
+#comment{
+  width: 100%;
+}
+
+input{
+  width: 90%;
+  height: px2rem(50px);
+  border: 1px solid #000000;
+}

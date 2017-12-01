@@ -6,6 +6,30 @@ class Common {
   }
 
   /**
+   * 用户输入过滤
+   *
+   * @static
+   * @param {string} str 需要过滤的字符串
+   * @returns
+   * @memberof Common
+   */
+  static inputFilter(str) {
+    return str.replace(/<\/?[^>]+>/gi, '');
+  }
+
+  /**
+   * 替换emoji表情
+   *
+   * @static
+   * @param {string} str 被替换的字符串
+   * @returns
+   * @memberof Common
+   */
+  static replaceEmoji(str) {
+    return str;
+  }
+
+  /**
    * 判断当前app是否为rela
    */
   static isRelaApp() {
