@@ -1,6 +1,6 @@
-# h5-template
+# static-multipage-webpack
 
-用于进行h5活动开发的框架，主要用于解决静态资源的打包加载以及本地环境和线上环境的调试。
+基于 ```webpack``` 的多页面框架，主要用于解决静态页面的开发痛点。适用于 ```h5``` 开发。
 
 ## 环境
 
@@ -11,12 +11,46 @@ npm v5.3.0
 webpack v3.7.1
 ```
 
-## 分支说明
-```master``` 为正式环境发布分支，非负责人不能进行相关操作，违者后果自负。
+## 如何使用
 
-```development``` 为测试环境发布分支，需要开发者将当前功能分支与master最新代码进行rebase才能进行push与发布，会覆盖其他开发者代码。
+```js
+// 本地开发环境
+npm run dev
 
-```feat-[num]``` 为新功能测试发布分支，会覆盖其他开发者的代码。
+// 测试环境项目打包
+npm run buildtest
+
+// 正式环境项目打包
+npm run build
+```
+
+## 特点
+
+* 单个页面下依赖的多个 ```js``` 或 ```css``` 将被合并成一个文件。
+* 代码压缩以及混淆。
+* 可以使用 ```ES6``` 或更新的语法编写。
+* 自动补齐 ```CSS``` 浏览器前缀。
+* 支持本地服务器在相同 WiFi 环境下的远程调试。
+
+## 待实现的功能
+
+* 使用 ```CSS Modules```。
+* 雪碧图的自动合并。
+* ```html``` 修改后自动刷新浏览器。
+  * [实现参考](http://www.cnblogs.com/wonyun/p/7077296.html)
+* ```webpack``` 配置文件修改后自动重启 ```webpack-dev-server```。
+  * [实现参考1](https://github.com/webpack/webpack-dev-server/tree/master/examples/api/simple)
+  * [实现参考2](http://www.cnblogs.com/wonyun/p/7077296.html)
+* 打包后的文件按照原始的目录层级不进行拍平。
+  * [实现参考](https://github.com/webpack/webpack/issues/902)
+* 新建文件后需要自动编译当前文件。
+  * [实现参考](http://www.cnblogs.com/wonyun/p/7077296.html)
+
+## 项目说明
+
+* 默认开发模式下 ```html``` 页面引入的资源路径都以 ```/publics/``` 开头，详情参考 ```/src/pages/demo/```。
+* 默认项目中的多媒体资源（如图片，音频，字体等）不会上传至代码库，需要开发者手动上传相关服务器（如七牛CDN），多媒体资源存放的目录名称必须为 ```assets```。
+* 文件夹名称如果包含 "-closed" 表示当前页面不参与打包，用于提高打包速度。
 
 ## 目录说明
 
@@ -38,37 +72,3 @@ webpack v3.7.1
 ├── webpack.dev.js webpack开发环境配置文件
 ├── webpack.prod.js webpack正式环境配置文件
 ~~~
-
-## 待解决问题
-
-* html修改自动刷新
-* 修改 ```webpack``` 配置文件自动重启服务
-
-## 项目说明
-
-* 当前项目使用 ```webpack``` 打包，开发者请自行阅读相关文档，理解模块化打包原理。
-* 默认项目中的多媒体资源（如图片，音频，字体等）不会上传至代码库，需要开发者手动上传相关服务器（如七牛CDN）。
-* 项目可直接使用 ```es6``` 语法进行代码编写
-
-## 如何使用
-
-```js
-// 本地开发环境
-npm run dev
-// 项目打包
-npm run build
-```
-
-项目在启动后会自动打包以下几个文件，所有打包文件的引用路径都为 ```/publics/[file]```：
-
-1. ```head.js``` 用于在 ```<head></head>``` 标签中引入的js文件，目前打包了下列三个文件。
-
-* ```src/common/js/flexible.js``` 移动端rem适配方案
-* ```src/common/js/gio.js``` growingio数据采集
-* ```src/common/js/zhanzhang.js``` 百度站长统计
-
-2. ```src/pages/``` 下则会以文件夹为入口，打包和文件夹名称（活动名称）相同的文件 ```[page].js``` ```[page].css```。
-
-***详情请配合 ```/src/pages/demo``` 示例查看与学习***
-
-
