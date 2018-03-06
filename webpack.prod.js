@@ -4,7 +4,8 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const MyHtmlWebpackPlugin = require('./myHtmlWebpackPlugin');
 
 const common = require('./webpack.common.js');
@@ -35,15 +36,27 @@ module.exports = merge(common, {
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, './dist/publics'),
-    publicPath: '../../publics',
+    publicPath: env === 'production' ? 'cdn地址' : '../../publics',
   },
   plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development'),
+        NODE_ENV: JSON.stringify(env || 'production'),
       },
     }),
     new CleanWebpackPlugin(['dist']),
-    new UglifyjsWebpackPlugin(),
+    new ParallelUglifyPlugin({
+      cacheDir: '.cache/',
+      uglifyJS: {
+        output: {
+          comments: false,
+        },
+        compress: {
+          warnings: false,
+        },
+      },
+    }),
+    new ExtractTextPlugin('[name].[hash].css'),
   ].concat(getPages()),
 });

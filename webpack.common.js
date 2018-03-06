@@ -4,6 +4,10 @@ const webpack = require('webpack');
 const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackRequireHttp = require('webpack-require-http');
+const HappyPack = require('happypack');
+const os = require('os');
+
+HappyPack.ThreadPool({ size: os.cpus().length });
 
 /**
  * 获取各个页面下的入口文件
@@ -41,18 +45,20 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env'],
-          },
-        },
+        use: 'happypack/loader',
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|sass|css)$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: [{
+            loader: 'css-loader',
+            options: {
+              minimize: true,
+            },
+          }, {
+            loader: 'postcss-loader',
+          }, 'fast-sass-loader'],
         }),
       },
       {
@@ -70,10 +76,14 @@ module.exports = {
     ],
   },
   plugins: [
-    // new webpack.ProvidePlugin({
-    //   $: 'jquery',
-    //   Hammer: 'hammerjs',
-    // }),
-    new ExtractTextPlugin('[name].css'),
+    new HappyPack({
+      loaders: [{
+        loader: 'babel-loader',
+        options: {
+          presets: ['env'],
+          cacheDirectory: true,
+        },
+      }],
+    }),
   ],
 };
