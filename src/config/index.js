@@ -1,18 +1,18 @@
 const config = {
   development: {
-    host: '//dev.rela.me',
-    apiHost: '//test-web-api.rela.me',
-    appId: 'wx0e06c140296f0480',
+    host: '',
+    apiHost: '',
+    appId: '',
   },
   test: {
-    host: '//dev.rela.me',
-    apiHost: '//test-web-api.rela.me',
-    appId: 'wx0e06c140296f0480',
+    host: '',
+    apiHost: '',
+    appId: '',
   },
   production: {
-    host: '//www.rela.me',
-    apiHost: '//web-api.rela.me',
-    appId: 'wx0e06c140296f0480',
+    host: '',
+    apiHost: '',
+    appId: '',
   },
 };
 
